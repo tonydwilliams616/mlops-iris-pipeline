@@ -25,18 +25,21 @@ This project demonstrates an end-to-end **MLOps + DevOps pipeline** using:
 
 ## 🏗 Architecture
 
-Training → Model artifact → Docker image → Deployment → Monitoring
+**Training → Model artifact → Docker image → Deployment → Monitoring**
 
 ---
 
 ## 🚀 Run locally (quickstart)
 
 ```bash
+# Create and activate a virtual environment
 python -m venv .venv
 source .venv/bin/activate
+
+# Install dependencies
 pip install -r src/requirements.txt
 
-# Train model (output stored in /models)
+# Train model (saves trained model to /models/model.pkl)
 python src/train.py
 
 # Run API server

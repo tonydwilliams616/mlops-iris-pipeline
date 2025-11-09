@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops-iris-deployment
+  labels:
+    app: mlops-iris
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mlops-iris
+  template:
+    metadata:
+      labels:
+        app: mlops-iris
+    spec:
+      containers:
+        - name: mlops-iris
+          image: williamsa/mlops-iris:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MODEL_PATH
+              value: "/app/models/model.pkl"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
