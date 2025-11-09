@@ -36,3 +36,32 @@ Thumbs.db
 # Docker
 # ----------------------------------------------------
 *.tar
+
+# ----------------------------------------------------
+# Terraform
+# ----------------------------------------------------
+# Local .terraform directories
+**/.terraform/*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash logs and plan files
+crash.log
+terraform.tfplan
+*.tfplan
+
+# Override files (local customization)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Sensitive variable files (local only)
+terraform.tfvars
+*.tfvars
+*.tfvars.json
+
+# Lock file (optional: keep or ignore)
+.terraform.lock.hcl
