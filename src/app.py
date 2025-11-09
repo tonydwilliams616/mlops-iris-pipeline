@@ -35,6 +35,20 @@ class PredictRequest(BaseModel):
 # --------------------------------------------------
 # Routes
 # --------------------------------------------------
+@app.on_event("startup")
+def load_model():
+    global model
+    if not os.path.exists(MODEL_PATH):
+        print(f"⚠️ Model not found at {MODEL_PATH}, creating a dummy model for startup.")
+        from sklearn.datasets import load_iris
+        from sklearn.ensemble import RandomForestClassifier
+        iris = load_iris()
+        clf = RandomForestClassifier(n_estimators=10, random_state=42)
+        clf.fit(iris.data, iris.target)
+        os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+        joblib.dump(clf, MODEL_PATH)
+    model = joblib.load(MODEL_PATH)
+
 @app.get("/health")
 def health():
     """Health check endpoint."""
@@ -43,7 +57,6 @@ def health():
 
 @app.post("/predict")
 def predict(request: PredictRequest):
-    """Make predictions on input data."""
     REQUEST_COUNT.labels(endpoint="/predict").inc()
     with REQUEST_LATENCY.labels(endpoint="/predict").time():
         if model is None:
