@@ -8,3 +8,4 @@ joblib
 prometheus-client
 pytest
 requests
+httpx
