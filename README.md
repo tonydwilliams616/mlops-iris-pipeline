@@ -1,5 +1,11 @@
 # MLOps Iris Pipeline (End-to-End ML Productionization)
 
+[![CI Pipeline](https://github.com/<your-github-username>/mlops-iris-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-github-username>/mlops-iris-pipeline/actions)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Terraform](https://img.shields.io/badge/Terraform-1.9-purple)
+![AWS](https://img.shields.io/badge/AWS-EKS%20%7C%20S3%20%7C%20ECR-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 This project demonstrates an end-to-end **MLOps + DevOps pipeline** using:
 
 - Python (FastAPI + scikit-learn)
@@ -22,6 +28,19 @@ This project demonstrates an end-to-end **MLOps + DevOps pipeline** using:
 | **Monitoring** | Prometheus metrics exposed from FastAPI |
 
 ---
+
+## 🛠 Tech Stack
+
+| Layer | Tools |
+|-------|--------|
+| **Language & Framework** | Python 3.11, FastAPI, scikit-learn |
+| **Experiment Tracking** | MLflow |
+| **CI/CD** | GitHub Actions |
+| **Containerization** | Docker |
+| **Orchestration** | Kubernetes (EKS) |
+| **IaC** | Terraform |
+| **Monitoring** | Prometheus + Grafana |
+| **Cloud Provider** | AWS (ECR, S3, DynamoDB) |
 
 ## 🏗 Architecture
 
