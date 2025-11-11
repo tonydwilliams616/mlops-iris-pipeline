@@ -46,3 +46,34 @@ python src/train.py
 uvicorn src.app:app --reload --port 8000
 
 # Terraform backoff config
+
+terraform init -backend-config=backend-dev.conf
+
+---
+
+## ☁️ Terraform Remote Backend (S3 + DynamoDB)
+
+In production environments, Terraform state should never be stored locally.  
+Instead, this project uses an **S3 backend** for state locking.
+
+### 🏗 Why this matters
+| Feature | Benefit |
+|----------|----------|
+| **S3 remote state** | Secure, versioned, team-accessible |
+| **Environment configs** | Separate backends for `dev`, `staging`, `prod` |
+| 
+
+---
+
+### ⚙️ Backend configuration
+
+Terraform’s backend can’t use variables directly,  
+so we use a clean, flexible approach with **per-environment backend config files**.
+
+In `terraform/backend-dev.conf`:
+```hcl
+bucket         = "mlops-terraform-state-dev"
+key            = "infra/terraform.tfstate"
+region         = "us-east-1"
+dynamodb_table = "mlops-terraform-locks-dev"
+encrypt        = true
